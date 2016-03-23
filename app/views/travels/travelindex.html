@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+      <link rel="stylesheet" href="static/css/styles.css">
+      <title>Login/Registration</title>
+   </head>
+   <body>
+      <div class="container col-md-12">
+         <nav class="navbar-static-top">
+            <p class="navbar-text pull-right"><a href="/logout">Log Out</a></p>
+            <p class="navbar-text pull-right"><a href="/travels/add">Make New Travel Plan</a></p>
+         </nav>
+         <h1>Hello, {{user[0]['username']}}! Welcome to the travel page</h1>
+         <table class="col-md-8" border="1" >
+            <h3 class="col-md-6">Your Trip Schedules</h3>
+            <thead>
+               <tr>
+                  <td>Destination</td><td>Travel Start Date</td><td>Travel End Date</td><td>Plan</td>
+               </tr>
+            </thead>
+            <tbody>
+               {% for my in mine %}
+               <tr>
+                  <td>{{my['destination']}}</td><td>{{my['depart']}}</td><td>{{my['returndate']}}</td><td>{{my['plan']}}</td>
+               </tr>
+               {%endfor%}
+            </tbody>
+         </table>
+         <table class="col-md-8" border="1" >
+            <h3 class="col-md-6">Other Trip Schedules</h3>
+            <thead>
+               <tr>
+                  <td>Destination</td><td>Travel Start Date</td><td>Travel End Date</td><td>Plan</td><td>Want to join?</td>
+               </tr>
+            </thead>
+            <tbody>
+               {% for other in others %}
+               <tr>
+                  <td><a href="/destination/{{other['id']}}">{{other['destination']}}</a></td><td>{{other['depart']}}</td><td>{{other['returndate']}}</td><td>{{other['plan']}}</td><td><a href="/travels/join/{{other['id']}}">I want to join!</a></td>
+               </tr>
+               {%endfor%}
+            </tbody>
+         </table>
+      </div>
+   </body>
+</html>
